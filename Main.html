@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mini Project</title>
+		<script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+
+	<style type="text/css">
+		h1{
+			color: purple;
+		}
+		h3{
+			color: green;
+		}
+		canvas{
+				height:400px;
+				border: 1px  solid #c3c3c3;
+
+		}
+		input{
+			color: red;
+			background-color: black;
+		}
+
+	</style>
+	<script type="text/javascript">
+		var orimg1=null;
+		var orimg2=null;
+		var orimg3=null;
+		var orimg4=null;
+		var c=null;
+		function upload() {
+			var v1=document.getElementById('upload');
+			
+			c=document.getElementById('c1');
+			orimg1=new SimpleImage(v1);
+			orimg2=new SimpleImage(v1);
+			orimg3=new SimpleImage(v1);
+			orimg4=new SimpleImage(v1);
+			
+			orimg1.drawTo(c);
+
+			// body...
+		}
+		function makeRed() {
+			
+			if(orimg2==null || !orimg2.complete())
+						{
+				alert("image not loaded");
+				return ;
+			}
+			for(var pixel of orimg2.values())
+			{
+		
+				var avg=(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+				if(avg<128)
+				
+			{		pixel.setRed(2*avg);
+					pixel.setGreen(0);
+
+					pixel.setBlue(0);
+
+
+				}
+				else
+				{
+					pixel.setRed(255);
+					pixel.setGreen(2*avg-255);
+					pixel.setBlue(2*avg-255);
+				}
+
+			}
+			orimg2.drawTo(c);
+
+			// body...
+		}
+		function makeRainbow() {
+			if(orimg4==null || !orimg4.complete())
+						{
+				alert("image not loaded");
+				return ;
+			}
+			var ht=orimg3.getHeight();
+			for(var pixel of orimg3.values())
+			{
+				var y=pixel.getY();
+				var avg=(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+				if(y>0 && y<ht/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(2*avg);
+					pixel.setGreen(0);
+
+					pixel.setBlue(0);
+
+
+				}
+				else
+				{
+					pixel.setRed(255);
+					pixel.setGreen(2*avg-255);
+					pixel.setBlue(2*avg-255);
+				}
+
+				}
+				if(y>ht/7 && y<(2*ht)/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(2*avg);
+					pixel.setGreen(0.8*avg);
+
+					pixel.setBlue(0);
+
+
+				}
+				else
+				{
+					pixel.setRed(255);
+					pixel.setGreen(1.2*avg-51);
+					pixel.setBlue(2*avg-255);
+				}
+
+				}if(y>(2*ht)/7 && y<(3*ht)/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(2*avg);
+					pixel.setGreen(2*avg);
+
+					pixel.setBlue(0);
+
+
+				}
+				else
+				{
+					pixel.setRed(255);
+					pixel.setGreen(255);
+					pixel.setBlue(2*avg-255);
+				}
+
+				}if(y>(3*ht)/7 && y<(4*ht)/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(0);
+					pixel.setGreen(2*avg);
+
+					pixel.setBlue(0);
+
+
+				}
+				else
+				{
+					pixel.setRed(2*avg-255);
+					pixel.setGreen(255);
+					pixel.setBlue(2*avg-255);
+				}
+
+				}if(y>(4*ht)/7 && y<(5*ht)/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(0);
+					pixel.setGreen(0);
+
+					pixel.setBlue(2*avg);
+
+
+				}
+				else
+				{
+					pixel.setRed(2*avg-255);
+					pixel.setGreen(2*avg-255);
+					pixel.setBlue(255);
+				}
+
+				}if(y>(5*ht)/7 && y<(6*ht)/7)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(0.8*avg);
+					pixel.setGreen(0);
+
+					pixel.setBlue(2*avg);
+
+
+				}
+				else
+				{
+					pixel.setRed(1.2*avg-51);
+					pixel.setGreen(2*avg-255);
+					pixel.setBlue(255);
+				}
+
+				}if(y>(6*ht)/7 && y<ht)
+				{
+									if(avg<128)
+				{
+					pixel.setRed(1.6*avg);
+					pixel.setGreen(0);
+
+					pixel.setBlue(1.6*avg);
+
+
+				}
+				else
+				{
+					pixel.setRed(0.4*avg+153);
+					pixel.setGreen(2*avg-255);
+					pixel.setBlue(0.4*avg+153);
+				}
+
+				}
+
+			}
+			orimg3.drawTo(c);
+
+
+			// body...
+		}
+		function makeGray() {
+			
+						if(orimg4==null || !orimg4.complete())
+						{
+				alert("image not loaded");
+				return ;
+			}
+			for(var pixel of orimg4.values())
+			{
+				var avg=(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+				pixel.setRed(avg);
+				pixel.setGreen(avg);
+				pixel.setBlue(avg);
+			}
+			orimg4.drawTo(c);
+		
+			
+
+			// body...
+		}
+		function reset() {
+			if(orimg1==null || !orimg1.complete()){
+				alert("image not loaded");
+				return;
+			}
+			orimg1.drawTo(c);
+		
+
+			
+			// body...
+		}
+
+	</script>
+</head>
+<body bgcolor="orange">
+<h1><center><em><u>Mini Project</u></em></center></h1>
+<h3>Upload any image and apply filter on it of your choice:-</h3>
+<center><canvas id="c1"></canvas></center><br>
+<h3>Load Image</h3>
+<input type="file" value="Upload" accept="image/*" multiple="false" id="upload" onchange="upload()" /><br>
+<h3>Choose Filters</h3>
+<input type="button" value="Red" onclick="makeRed()"/>
+<input type="button" value="Rainbow" onclick="makeRainbow()" />
+<input type="button" value="GrayScale" onclick="makeGray()"  /><br><br>
+<input type="button" value="Reset" id="reset" onclick="reset()" />
+
+</body>
+</html>
